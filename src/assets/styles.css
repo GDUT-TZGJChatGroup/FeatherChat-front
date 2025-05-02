@@ -1,0 +1,533 @@
+/* 基础样式 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    overflow-y: auto;
+    /* 始终显示垂直滚动条，防止抖动 */
+}
+
+body {
+    background: #f0f4f8;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 仪表盘布局 */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    /* 防止内容溢出导致滚动条 */
+}
+
+/* 侧边栏 */
+.sidebar {
+    width: 220px;
+    background: #00796b;
+    color: white;
+    padding: 20px;
+    flex-shrink: 0;
+    /* 防止侧边栏被压缩 */
+}
+
+.sidebar .brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li a {
+    display: block;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.sidebar li a.active,
+.sidebar li a:hover {
+    background: #004d40;
+}
+
+/* 主体内容 */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    min-height: 100vh;
+    /* 确保内容区域占满视口高度 */
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    /* 内容超长时允许滚动 */
+}
+
+/* 卡片样式 */
+.card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* 个人信息样式 */
+.profile-card {
+    max-width: 500px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-upload {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.avatar-upload img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #00796b;
+}
+
+.upload-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 15px;
+    background: #e0f7fa;
+    color: #00796b;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.upload-btn:hover {
+    background: #b2ebf2;
+}
+
+.profile-form {
+    display: grid;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.save-btn {
+    margin-top: 10px;
+    padding: 10px;
+    background: #00796b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.save-btn:hover {
+    background: #004d40;
+}
+
+/* 聊天界面样式 */
+.chat-container {
+    display: flex;
+    gap: 20px;
+    height: 80vh;
+    max-height: 80vh;
+    /* 限制最大高度，防止溢出 */
+}
+
+.friends-list,
+.chat-window {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    overflow-y: auto;
+    /* 内容超长时允许滚动 */
+}
+
+.friends-list h3,
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.friends-list ul {
+    list-style: none;
+}
+
+.friends-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.friends-list li:last-child {
+    border-bottom: none;
+}
+
+.chat-btn,
+.remove-btn {
+    background: #e0f7fa;
+    color: #00796b;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.chat-btn:hover,
+.remove-btn:hover {
+    background: #b2ebf2;
+}
+
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.status-indicator.online {
+    background: #66bb6a;
+}
+
+.status-indicator.offline {
+    background: #ef5350;
+}
+
+.messages {
+    height: 60vh;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    background: #f9f9f9;
+}
+
+.message {
+    display: flex;
+    align-items: start;
+    margin-bottom: 15px;
+    gap: 10px;
+}
+
+.message.received .content {
+    background: #e0f7fa;
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.message.sent .content {
+    background: #c8e6c9;
+    margin-right: 0;
+    margin-left: auto;
+}
+
+.message .avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.message .content {
+    max-width: 60%;
+    padding: 10px 15px;
+    border-radius: 15px;
+    font-size: 0.95rem;
+    position: relative;
+}
+
+.message-form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.message-form input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.message-form button {
+    padding: 10px 20px;
+    background: #00796b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* 好友管理样式 */
+.friends-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh;
+    /* 确保好友页面内容区域高度一致 */
+}
+
+.add-friend {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.add-friend input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.add-friend button {
+    padding: 10px 20px;
+    background: #00796b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.actions {
+    display: flex;
+    gap: 5px;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .chat-container {
+        flex-direction: column;
+    }
+
+    .friends-list,
+    .chat-window {
+        flex: none;
+        width: 100%;
+    }
+}
+
+/* 状态指示器通用样式 */
+.status-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+/* 在线状态：绿色 */
+.friends-list li.online .status-indicator,
+.chat-list li.online .status-indicator {
+    background-color: #66bb6a;
+}
+
+/* 离线状态：灰色 */
+.friends-list li.offline .status-indicator,
+.chat-list li.offline .status-indicator {
+    background-color: #ccc;
+}
+
+/* 好友名称样式 */
+.friend-name {
+    vertical-align: middle;
+}
+
+/* 登录页面样式 */
+.login-container {
+    background: white;
+    padding: clamp(1rem, 5vw, 2rem);
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: min(90vw, 400px);
+    margin: 0 auto;
+    transition: all 0.3s ease;
+}
+
+.form-container {
+    position: relative;
+    min-height: 300px;
+}
+
+.form {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    top: 0;
+    left: 0;
+    transition: all 0.5s ease;
+}
+
+.form.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.form h2 {
+    text-align: center;
+    margin-bottom: clamp(1rem, 3vw, 1.5rem);
+    color: #004d40;
+    font-size: clamp(1.5rem, 5vw, 2rem);
+}
+
+input {
+    width: 100%;
+    padding: clamp(0.5rem, 2vw, 0.75rem);
+    margin: clamp(0.3rem, 1vw, 0.5rem) 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s;
+    font-size: clamp(0.9rem, 3vw, 1rem);
+}
+
+input:focus {
+    border-color: #00796b;
+}
+
+button {
+    width: 100%;
+    padding: clamp(0.5rem, 2vw, 0.75rem);
+    background: #00796b;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: clamp(0.9rem, 3vw, 1rem);
+    margin-top: clamp(0.5rem, 2vw, 1rem);
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #004d40;
+}
+
+.switch-text {
+    margin-top: clamp(0.5rem, 2vw, 1rem);
+    text-align: center;
+    font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+}
+
+.switch-text a {
+    color: #00796b;
+    text-decoration: none;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+.brand {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: clamp(1rem, 3vw, 1.5rem);
+    color: #00796b;
+    animation: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* 响应式调整 */
+@media (max-width: 600px) {
+    .login-container {
+        width: 95vw;
+        padding: 1.5rem;
+    }
+
+    .form-container {
+        min-height: 280px;
+    }
+
+    .form h2 {
+        font-size: 1.8rem;
+    }
+
+    input,
+    button {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .login-container {
+        width: 98vw;
+        padding: 1rem;
+    }
+
+    .form-container {
+        min-height: 260px;
+    }
+
+    .brand {
+        font-size: 1.8rem;
+    }
+
+    .form h2 {
+        font-size: 1.5rem;
+    }
+
+    input,
+    button {
+        font-size: 0.9rem;
+    }
+}
