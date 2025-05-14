@@ -29,16 +29,17 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import Sidebar from '../components/Sidebar.vue'
 
 const router = useRouter()
 const newFriendId = ref('')
-const friends = ref([
-    { id: 1, name: '✨ 小明', status: 'online' },
-    { id: 2, name: '🌙 小红', status: 'offline' }
-])
+const friends = ref([])
+
+onMounted(() => {
+    console.log('Friends page rendered, .add-friend input should be visible')
+})
 
 const addFriend = () => {
     const friendId = newFriendId.value.trim()
@@ -72,4 +73,30 @@ const startChat = (friend) => {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+/* 确保 .add-friend input 不受全局样式干扰 */
+.add-friend input {
+    display: block;
+    flex: 1;
+    width: auto;
+    margin: 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    opacity: 1;
+    background: white;
+}
+
+/* 确保 .add-friend button 不受全局样式干扰 */
+.add-friend button {
+    width: auto;
+    margin-top: 0;
+    padding: 10px 20px;
+    background: #00796b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+</style>

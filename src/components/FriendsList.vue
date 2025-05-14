@@ -16,10 +16,7 @@
 <script setup>
 import { ref } from 'vue'
 
-const friends = ref([
-    { id: 1, name: '✨ 小明', status: 'online' },
-    { id: 2, name: '🌙 小红', status: 'offline' }
-])
+const friends = ref([])
 
 const emit = defineEmits(['select-friend'])
 
