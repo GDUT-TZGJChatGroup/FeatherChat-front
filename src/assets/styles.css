@@ -395,27 +395,6 @@ body {
     }
 }
 
-/* 状态指示器通用样式 */
-.status-indicator {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    display: inline-block;
-    margin-right: 8px;
-    vertical-align: middle;
-}
-
-/* 在线状态：绿色 */
-.friends-list li.online .status-indicator,
-.chat-list li.online .status-indicator {
-    background-color: #66bb6a;
-}
-
-/* 离线状态：灰色 */
-.friends-list li.offline .status-indicator,
-.chat-list li.offline .status-indicator {
-    background-color: #ccc;
-}
 
 /* 好友名称样式 */
 .friend-name {
@@ -469,18 +448,7 @@ body {
     font-size: clamp(0.9rem, 3vw, 1rem);
 }
 
-/* 个人信息页面的输入框样式 */
-.profile-card input,
-.profile-card select {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-}
 
-input:focus {
-    border-color: #00796b;
-}
 
 /* 登录页面和个人信息页面的按钮样式 */
 .login-container button,
@@ -498,6 +466,81 @@ input:focus {
 }
 
 button:hover {
+
+    /* 好友请求列表容器 */
+    .friend-requests {
+        margin-top: 20px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        padding: 15px 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .friend-requests h3 {
+        font-size: 1.2rem;
+        color: #00796b;
+        margin-bottom: 10px;
+    }
+
+    /* 每个请求项 */
+    .request-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 16px;
+        margin-bottom: 10px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+        transition: all 0.3s ease;
+    }
+
+    .request-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    /* 请求文字部分 */
+    .request-item span {
+        font-size: 0.95rem;
+        color: #333;
+        flex: 1;
+        margin-right: 10px;
+    }
+
+    /* 同意按钮样式 */
+    .request-item button {
+        padding: 6px 14px;
+        font-size: 0.85rem;
+        background-color: #00796b;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .request-item button:hover {
+        background-color: #004d40;
+    }
+
+    .request-item button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+
+    @media (max-width: 768px) {
+        .request-item {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .request-item button {
+            width: 100%;
+        }
+    }
+
     background: #004d40;
 }
 
@@ -578,5 +621,48 @@ button:hover {
 
     .switch-text {
         font-size: 0.85rem;
+    }
+}
+
+
+/* 返回按钮样式 */
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    background-color: #00796b;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.back-button:hover {
+    background-color: #004d40;
+    transform: translateY(-2px);
+}
+
+.back-button:active {
+    transform: translateY(1px);
+}
+
+.back-button i {
+    margin-right: 6px;
+}
+
+/* 小屏幕适配 */
+@media (max-width: 768px) {
+    .back-button {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    .back-button i {
+        margin-right: 4px;
     }
 }

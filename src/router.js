@@ -1,15 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from './views/Login.vue'
-// import Chat from './views/chat.vue'
 import Friends from './views/Friends.vue'
+import ChatDialog from './views/ChatDialog.vue' // 引入对话框组件
 
 const routes = [
     { path: '/', redirect: '/login' },
     { path: '/login', component: Login },
-    // { path: '/chat', component: Chat },
     { path: '/friends', component: Friends },
-    // 移除“我的”页面的路由
-    // { path: '/profile', component: Profile }
+    { path: '/chat-dialog/:friendId', component: ChatDialog } // 添加对话框路由
 ]
 
 const router = createRouter({

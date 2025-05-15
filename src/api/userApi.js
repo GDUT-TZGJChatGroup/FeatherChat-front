@@ -9,16 +9,6 @@ const axiosInstance = axios.create({
     }
 });
 
-// 请求拦截器，添加 token
-axiosInstance.interceptors.request.use(config => {
-    const token = localStorage.getItem('token');
-    if (token) {
-        config.headers['token'] = token;
-    }
-    return config;
-}, error => {
-    return Promise.reject(error);
-});
 
 // 获取邮箱验证码
 // userApi.js
@@ -47,7 +37,7 @@ export const sendFriendRequest = async (accountName) => {
     return axiosInstance.post(`/api/user/friendRequest/${accountName}`);
 };
 
-// 获取好友请求列表
+// 获取好友请求列表（新）
 export const getFriendRequestList = async () => {
     return axiosInstance.get('/api/user/friendsRequestList');
 };
