@@ -197,9 +197,9 @@ body {
     border-bottom: 1px solid #eee;
 }
 
-.friends-list li:last-child {
+/* .friends-list li:last-child {
     border-bottom: none;
-}
+} */
 
 .chat-btn,
 .remove-btn {

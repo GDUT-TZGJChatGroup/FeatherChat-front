@@ -32,9 +32,9 @@ onMounted(() => {
 })
 
 // 原有调试逻辑
-onMounted(() => {
-    console.log('Sidebar rendered, .brand element should be visible')
-})
+// onMounted(() => {
+//     console.log('Sidebar rendered, .brand element should be visible')
+// })
 </script>
 
 <style scoped>
