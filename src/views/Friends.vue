@@ -15,8 +15,7 @@
                 <!-- 好友请求列表 -->
                 <div class="friend-requests">
                     <h3>好友请求 ({{ friendRequests.length }})</h3>
-                    <div v-if="isLoadingRequests">加载中...</div>
-                    <div v-else-if="errorRequests" class="error" style="color: red;">{{ errorRequests }}</div>
+                    <div v-if="errorRequests" class="error" style="color: red;">{{ errorRequests }}</div>
                     <ul v-else>
                         <li v-for="request in friendRequests" :key="request.id" class="request-item">
                             <span>{{ request.account }} 申请添加你为好友</span>
@@ -30,8 +29,7 @@
                 <!-- 好友列表 -->
                 <div class="friends-list">
                     <h3>我的好友 ({{ friends.length }})</h3>
-                    <div v-if="isLoading">加载中...</div>
-                    <div v-else-if="error" class="error" style="color: red;">{{ error }}</div>
+                    <div v-if="error" class="error" style="color: red;">{{ error }}</div>
                     <ul v-else id="friendList">
                         <!-- 使用FriendItem组件循环渲染好友 -->
                         <FriendItem v-for="friend in friends" :key="friend.id" :friend="friend"
@@ -50,6 +48,9 @@ import { useRouter } from 'vue-router'
 import { getFriendList, sendFriendRequest, getFriendRequestList, agreeFriendRequest, deleteFriend } from '../api/userApi'
 import Sidebar from '../components/Sidebar.vue'
 import FriendItem from '../components/FriendItem.vue' // 引入新组件
+import { onBeforeUnmount } from 'vue'
+
+
 
 const router = useRouter()
 const newFriendId = ref('')
@@ -101,6 +102,8 @@ const fetchData = async () => {
         isLoading.value = false;
     }
 
+
+
     // 获取好友请求列表
     isLoadingRequests.value = true;
     errorRequests.value = null;
@@ -108,7 +111,7 @@ const fetchData = async () => {
         const requestListRes = await getFriendRequestList();
         if (requestListRes.data.code === 200) {
             friendRequests.value = requestListRes.data.data;
-            console.log('好友请求列表:', friendRequests.value); // 调试输出
+            // console.log('好友请求列表:', friendRequests.value); // 调试输出
         } else {
             errorRequests.value = requestListRes.data.msg || '获取好友请求失败';
         }
@@ -121,8 +124,23 @@ const fetchData = async () => {
 };
 
 
-// 挂载时调用统一数据获取函数（保持不变）
-onMounted(fetchData)
+// // 挂载时调用统一数据获取函数（保持不变）
+// onMounted(fetchData)
+
+let intervalId = null
+
+onMounted(() => {
+    fetchData()
+
+    // 每10秒刷新一次（根据需求可以改成5秒或15秒）
+    intervalId = setInterval(() => {
+        fetchData()
+    }, 10000) // 10000 毫秒 = 10 秒
+})
+
+onBeforeUnmount(() => {
+    if (intervalId) clearInterval(intervalId)
+})
 
 // 添加好友
 const addFriend = async () => {
@@ -176,14 +194,15 @@ const agreeRequest = async (accountName) => {
         isAgreeing.value = null;
     }
 };
+
 // 跳转到聊天对话框
-const goToChatDialog = (friendId,friendName) => {
+const goToChatDialog = (friendId, friendName) => {
     if (!friendId) {
         alert('无法打开对话：好友ID无效');
         return;
     }
 
-    router.push({path:'/chat-dialog',query:{friendId:friendId,friendName:friendName}})
+    router.push({ path: '/chat-dialog', query: { friendId: friendId, friendName: friendName } })
 };
 
 </script>
