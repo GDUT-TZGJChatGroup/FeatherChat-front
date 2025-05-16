@@ -11,12 +11,11 @@ body {
     height: 100%;
     margin: 0;
     overflow-y: auto;
-    /* 始终显示垂直滚动条，防止抖动 */
 }
 
 body {
-    background: #f0f4f8;
-    color: #333;
+    height: 100vh;
+    background: linear-gradient(135deg, #e0f7fa 0%, #ffffff 100%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,7 +27,6 @@ body {
     min-height: 100vh;
     width: 100vw;
     overflow: hidden;
-    /* 防止内容溢出导致滚动条 */
 }
 
 /* 侧边栏 */
@@ -38,14 +36,16 @@ body {
     color: white;
     padding: 20px;
     flex-shrink: 0;
-    /* 防止侧边栏被压缩 */
 }
 
 .sidebar .brand {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 30px;
-    text-align: center;
+    display: block !important;
+    font-size: 1.5rem !important;
+    font-weight: bold !important;
+    margin-bottom: 30px !important;
+    text-align: center !important;
+    color: white !important;
+    opacity: 1 !important;
 }
 
 .sidebar ul {
@@ -71,11 +71,9 @@ body {
     flex: 1;
     padding: 20px;
     min-height: 100vh;
-    /* 确保内容区域占满视口高度 */
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    /* 内容超长时允许滚动 */
 }
 
 /* 卡片样式 */
@@ -103,11 +101,11 @@ body {
 }
 
 .avatar-upload img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #00796b;
+    width: 120px !important;
+    height: 120px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    border: 3px solid #00796b !important;
 }
 
 .upload-btn {
@@ -170,7 +168,6 @@ body {
     gap: 20px;
     height: 80vh;
     max-height: 80vh;
-    /* 限制最大高度，防止溢出 */
 }
 
 .friends-list,
@@ -181,7 +178,6 @@ body {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     flex: 1;
     overflow-y: auto;
-    /* 内容超长时允许滚动 */
 }
 
 .friends-list h3,
@@ -225,6 +221,18 @@ body {
 }
 
 .status-indicator {
+    .upload-btn {
+        width: 40px;
+        height: 40px;
+        background: #e0f7fa;
+        border-radius: 5px;
+        cursor: pointer;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        transition: 0.3s;
+    }
+
     width: 12px;
     height: 12px;
     border-radius: 50%;
@@ -298,6 +306,30 @@ body {
     border-radius: 5px;
 }
 
+.message-form .upload-btn {
+    width: 40px;
+    height: 40px;
+    background: #e0f7fa;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.message-form .upload-btn::before {
+    content: '🖼️';
+    /* 使用图片图标 */
+    font-size: 20px;
+    color: #00796b;
+}
+
+.message-form .upload-btn:hover {
+    background: #b2ebf2;
+}
+
 .message-form button {
     padding: 10px 20px;
     background: #00796b;
@@ -313,7 +345,6 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 80vh;
-    /* 确保好友页面内容区域高度一致 */
 }
 
 .add-friend {
@@ -323,13 +354,21 @@ body {
 }
 
 .add-friend input {
+    display: block;
     flex: 1;
+    width: auto;
+    margin: 0;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 1rem;
+    opacity: 1;
+    background: white;
 }
 
 .add-friend button {
+    width: auto;
+    margin-top: 0;
     padding: 10px 20px;
     background: #00796b;
     color: white;
@@ -356,27 +395,6 @@ body {
     }
 }
 
-/* 状态指示器通用样式 */
-.status-indicator {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    display: inline-block;
-    margin-right: 8px;
-    vertical-align: middle;
-}
-
-/* 在线状态：绿色 */
-.friends-list li.online .status-indicator,
-.chat-list li.online .status-indicator {
-    background-color: #66bb6a;
-}
-
-/* 离线状态：灰色 */
-.friends-list li.offline .status-indicator,
-.chat-list li.offline .status-indicator {
-    background-color: #ccc;
-}
 
 /* 好友名称样式 */
 .friend-name {
@@ -395,23 +413,20 @@ body {
 }
 
 .form-container {
-    position: relative;
-    min-height: 300px;
+    display: flex;
+    flex-direction: column;
 }
 
 .form {
-    position: absolute;
-    width: 100%;
+    display: none;
+    flex-direction: column;
     opacity: 0;
-    visibility: hidden;
-    top: 0;
-    left: 0;
-    transition: all 0.5s ease;
+    transition: opacity 0.5s ease;
 }
 
 .form.active {
+    display: flex;
     opacity: 1;
-    visibility: visible;
 }
 
 .form h2 {
@@ -421,7 +436,8 @@ body {
     font-size: clamp(1.5rem, 5vw, 2rem);
 }
 
-input {
+/* 登录页面输入框样式 */
+.login-container input {
     width: 100%;
     padding: clamp(0.5rem, 2vw, 0.75rem);
     margin: clamp(0.3rem, 1vw, 0.5rem) 0;
@@ -432,11 +448,11 @@ input {
     font-size: clamp(0.9rem, 3vw, 1rem);
 }
 
-input:focus {
-    border-color: #00796b;
-}
 
-button {
+
+/* 登录页面和个人信息页面的按钮样式 */
+.login-container button,
+.profile-card button {
     width: 100%;
     padding: clamp(0.5rem, 2vw, 0.75rem);
     background: #00796b;
@@ -450,6 +466,81 @@ button {
 }
 
 button:hover {
+
+    /* 好友请求列表容器 */
+    .friend-requests {
+        margin-top: 20px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        padding: 15px 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .friend-requests h3 {
+        font-size: 1.2rem;
+        color: #00796b;
+        margin-bottom: 10px;
+    }
+
+    /* 每个请求项 */
+    .request-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 16px;
+        margin-bottom: 10px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+        transition: all 0.3s ease;
+    }
+
+    .request-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    /* 请求文字部分 */
+    .request-item span {
+        font-size: 0.95rem;
+        color: #333;
+        flex: 1;
+        margin-right: 10px;
+    }
+
+    /* 同意按钮样式 */
+    .request-item button {
+        padding: 6px 14px;
+        font-size: 0.85rem;
+        background-color: #00796b;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .request-item button:hover {
+        background-color: #004d40;
+    }
+
+    .request-item button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+
+    @media (max-width: 768px) {
+        .request-item {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .request-item button {
+            width: 100%;
+        }
+    }
+
     background: #004d40;
 }
 
@@ -457,6 +548,7 @@ button:hover {
     margin-top: clamp(0.5rem, 2vw, 1rem);
     text-align: center;
     font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+    padding-bottom: clamp(0.5rem, 2vw, 1rem);
 }
 
 .switch-text a {
@@ -494,17 +586,17 @@ button:hover {
         padding: 1.5rem;
     }
 
-    .form-container {
-        min-height: 280px;
-    }
-
     .form h2 {
         font-size: 1.8rem;
     }
 
-    input,
-    button {
+    .login-container input,
+    .login-container button {
         font-size: 0.95rem;
+    }
+
+    .switch-text {
+        font-size: 0.9rem;
     }
 }
 
@@ -512,10 +604,6 @@ button:hover {
     .login-container {
         width: 98vw;
         padding: 1rem;
-    }
-
-    .form-container {
-        min-height: 260px;
     }
 
     .brand {
@@ -526,8 +614,12 @@ button:hover {
         font-size: 1.5rem;
     }
 
-    input,
-    button {
+    .login-container input,
+    .login-container button {
         font-size: 0.9rem;
+    }
+
+    .switch-text {
+        font-size: 0.85rem;
     }
 }
