@@ -197,8 +197,25 @@ const goToChatDialog = (friend) => {
     margin-top: 20px;
     background-color: #f9f9f9;
     border-radius: 10px;
+    /* 原有值 */
+    /* 新增：覆盖底部两个圆角 */
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
     padding: 15px 20px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* 修改好友列表框顶部圆角为直角 */
+.friends-list {
+    margin-top: 20px;
+    /* 假设原有样式 */
+    background-color: #fff;
+    /* 假设原有样式 */
+    /* 新增：覆盖顶部两个圆角 */
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding: 15px 20px;
+    /* 假设原有样式 */
 }
 
 .friend-requests h3 {
