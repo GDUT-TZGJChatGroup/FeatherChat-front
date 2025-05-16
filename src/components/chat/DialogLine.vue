@@ -1,11 +1,3 @@
-<template>
-    <li class="dialog-line">
-        <div class="dialog-content">
-            <pre>{{ content }}</pre>
-        </div>
-    </li>
-</template>
-
 <script setup>
 defineProps({
     content: String

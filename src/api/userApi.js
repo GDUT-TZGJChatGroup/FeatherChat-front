@@ -1,7 +1,7 @@
 import axios from 'axios';
 const baseURL = '/';
 
-// const baseURL = 'http://120.26.40.154:8888'; // 正确的后端地址
+
 const axiosInstance = axios.create({
     baseURL,
     headers: {

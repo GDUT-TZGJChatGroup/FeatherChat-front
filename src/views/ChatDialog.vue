@@ -67,7 +67,7 @@ onMounted(async () => {
     }
 
 
-    const wsUrl = `ws://120.26.40.154:8888/ws/chat?token=${encodeURIComponent(token)}`
+    const wsUrl = `ws://47.76.251.80:8888/ws/chat?token=${encodeURIComponent(token)}`
     ws = new WebSocket(wsUrl)
     ws.onopen = () => {
         console.log("websocket open")
