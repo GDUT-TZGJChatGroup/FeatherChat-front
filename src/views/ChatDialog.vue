@@ -12,8 +12,8 @@
             <div class="dialog-box">
                 <ul>
                     <template v-for="data in datas">
-                        <DialogLine v-if="data.fromUserId == userId" :content="data.content" class="receive" />
-                        <DialogLine v-if="data.fromUserId != userId" :content="data.content" class="send" />
+                        <DialogLine v-if="data.fromUserId == userId && data.toUserId == friendId" :content="data.content" class="receive" />
+                        <DialogLine v-if="data.fromUserId == friendId && data.toUserId == userId" :content="data.content" class="send" />
                     </template>
                 </ul>
             </div>

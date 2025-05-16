@@ -1,3 +1,11 @@
+<template>
+    <li class="dialog-line">
+        <div class="dialog-content">
+            {{ content }}
+        </div>
+    </li>
+</template>
+
 <script setup>
 defineProps({
     content: String
@@ -18,6 +26,7 @@ defineProps({
     border-radius: 10px;
     padding: 6px;
     background-color: #A8B7FF;
+    white-space: pre-wrap;
 }
 
 .dialog-line.send {
