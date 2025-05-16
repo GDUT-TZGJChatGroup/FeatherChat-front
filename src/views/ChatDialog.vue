@@ -6,7 +6,7 @@
                 <button class="back-button" @click="goBack">
                     <i class="icon-back"></i> 返回
                 </button>
-                <span class="dialog-header-title">{{ friendName }}</span>
+                <h2 class="dialog-header-title">{{ friendName }}</h2>
                 <!-- <button @click="testfunc">测试按钮</button> -->
             </div>
             <div class="dialog-box">

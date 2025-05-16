@@ -22,6 +22,8 @@ defineProps({
 }
 
 .dialog-content {
+    min-width: calc(1em + 10px);
+    min-height: calc(1em + 20px);
     max-width: 60%;
     border-radius: 10px;
     padding: 6px;

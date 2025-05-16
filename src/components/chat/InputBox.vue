@@ -1,7 +1,7 @@
 <template>
     <div class="dialog-input">
         <div class="dialog-input-area">
-            <textarea v-model="toSendContent" @keyup.enter="sendContent"></textarea>
+            <textarea v-model="toSendContent" @keyup.enter="cleanInput" @keydown.enter="sendContent"></textarea>
         </div>
         <div class="dialog-input-button">
             <button type="button" @click="sendContent" >
@@ -13,11 +13,22 @@
 
 <script setup>
 const emit = defineEmits(['sendMessage'])
-
 const toSendContent = defineModel()
 
+let isSendingMessage = false
+
+function cleanInput(){
+    toSendContent.value = ''
+    isSendingMessage = false
+}
+
 function sendContent(){
+    if(isSendingMessage){
+        toSendContent.value = ''
+        return
+    }
     emit('sendMessage',toSendContent.value)
+    isSendingMessage = true
     toSendContent.value = ''
 }
 </script>
