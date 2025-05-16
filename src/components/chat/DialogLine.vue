@@ -1,7 +1,7 @@
 <template>
     <li class="dialog-line">
         <div class="dialog-content">
-            <prepre>{{ content }}</prepre>
+            <pre>{{ content }}</pre>
         </div>
     </li>
 </template>

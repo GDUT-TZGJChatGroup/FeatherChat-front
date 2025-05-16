@@ -3,7 +3,6 @@
         <Sidebar />
         <main>
             <div class="dialog-header">
-                <!-- 添加返回按钮 -->
                 <button class="back-button" @click="goBack">
                     <i class="icon-back"></i> 返回
                 </button>
@@ -24,7 +23,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, nextTick } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 import Sidebar from '../components/Sidebar.vue'
@@ -47,15 +46,21 @@ let ws = ref(null)
 onMounted(async () => {
     if (!token) {
         router.push('\login')
+        return
+    }else if(!userId||!userAccount||!friendId.value||!friendName.value){
+        router.push('\login')
+        return
     }
     try {
         const response = await getChatHistory(friendName.value)
 
         if (response.data.code === 200) {
             console.log("接收到历史数据,id=" + friendId.value)
-            console.log(response.data)
             datas.value = response.data.data
-            console.log(datas)
+            nextTick(()=>{
+                const chatBox = document.querySelector(".dialog-box")
+                chatBox.scrollTop = chatBox.scrollHeight
+            })
         }
     } catch (err) {
         alert(err)
@@ -107,14 +112,11 @@ const goBack = () => {
     router.go(-1) // 或 router.push('/friends') 直接跳转好友页
 }
 
-// const testfunc = async()=>{
-//     datas.value.push({
-//         content:'你好',
-//         toUserId : 7
-//     })
-//     console.log(datas.value)
-//     console.log(userId.value)
-// }
+const testfunc = async()=>{
+    console.log([
+        userId.value,userAccount.value,friendName.value,friendId.value
+    ])
+}
 
 </script>
 
