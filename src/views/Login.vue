@@ -175,9 +175,10 @@ const handleLogin = async () => {
         const { code: responseCode, msg, data } = response.data;
         if (responseCode === 200) {
             localStorage.setItem('token', data.token);
-            localStorage.setItem('userAccount', userAccount); // 新增：存储当前登录账号
+            localStorage.setItem('userId', data.id);
+            localStorage.setItem('userAccount', userAccount);
             alert(`欢迎回来，${userAccount}！`);
-            router.push('/friends'); // 跳转到好友页（根据实际路由调整）
+            router.push('/friends'); // 跳转到好友页
         } else {
             alert(msg || '登录失败，请稍后重试');
         }

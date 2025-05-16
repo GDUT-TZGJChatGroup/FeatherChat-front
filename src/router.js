@@ -7,7 +7,7 @@ const routes = [
     { path: '/', redirect: '/login' },
     { path: '/login', component: Login },
     { path: '/friends', component: Friends },
-    { path: '/chat-dialog/:friendId', component: ChatDialog } // 添加对话框路由
+    { path: '/chat-dialog', component: ChatDialog }
 ]
 
 const router = createRouter({

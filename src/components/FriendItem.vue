@@ -32,7 +32,7 @@ const emits = defineEmits(['chat', 'delete'])
 
 // 触发对话事件，传递完整的好友对象
 const handleChat = () => {
-    emits('chat', props.friend)
+    emits('chat', props.friend.id,props.friend.account)
 }
 
 // 触发删除事件

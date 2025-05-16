@@ -177,17 +177,13 @@ const agreeRequest = async (accountName) => {
     }
 };
 // 跳转到聊天对话框
-const goToChatDialog = (friend) => {
-    const friendId = friend.id;
+const goToChatDialog = (friendId,friendName) => {
     if (!friendId) {
         alert('无法打开对话：好友ID无效');
         return;
     }
 
-    router.push({
-        path: `/chat-dialog/${friend.id}`,
-        params: { friend }
-    });
+    router.push({path:'/chat-dialog',query:{friendId:friendId,friendName:friendName}})
 };
 
 </script>
