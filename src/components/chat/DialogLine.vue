@@ -4,6 +4,14 @@ defineProps({
 })
 </script>
 
+<template>
+    <li class="dialog-line">
+        <div class="dialog-content">
+            <pre>{{ content }}</pre>
+        </div>
+    </li>
+</template>
+
 <style scoped>
 .dialog-line {
     width: 100%;
